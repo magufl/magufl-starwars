@@ -8,8 +8,8 @@ import { Single } from "./views/single";
 import injectContext from "./store/appContext";
 
 import { Navbar } from "./component/navbar";
+import { PersonajesBien } from "./component/personajes-ok.jsx";
 import { Footer } from "./component/footer";
-import { Personajes } from "./component/personajes.js";
 
 
 
@@ -24,7 +24,8 @@ const Layout = () => {
 			<BrowserRouter basename={basename}>
 				<ScrollToTop>
 					<Navbar />
-					<Personajes/>
+					<PersonajesBien />
+					
 					<Routes>
 						<Route path="/" element={<Home />} />
 						<Route path="/demo" element={<Demo />} />

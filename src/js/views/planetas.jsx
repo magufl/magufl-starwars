@@ -24,25 +24,19 @@ export const Planetas = () => {
 
     return (
         <div className="bg-dark px-4">
-
             <h1 className="text-light">Planetas</h1>
-            <div className="d-flex justify-content-center">
-                <div className="row card-group">
-
-                {planetas.map((item) =>
-            
-                    <div className=" card bg-secondary text-light mx-2" >
-                        <img src="..." className="card-img-top" alt="..." />
-                        <div className="card-body">
-                            <h5 className="card-title">{item.name}</h5>
-                            <Link to="/planeta-individual" className="btn btn-primary">Más info</Link>
-                           
-                        </div>
+            <div className="row">
+            {planetas.map((item, id) => 
+                <div key={id} className="card d-flex justify-content-center m-2" style={{width: '18rem'}}>
+                    <div className="card-body">
+                        <h5 className="card-title">{item.name}</h5>
+                        <p className="card-text">ID: {item.uid}</p>
+                        <a href="#" className="btn btn-primary">More info</a>
                     </div>
-                
-                )}
                 </div>
+            )}
+
             </div>
         </div>
-    );
+    )
 };

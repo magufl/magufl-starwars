@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 
-export const PlanetasIndividual = () => {
+export const PersonajeIndividual = () => {
     const host = 'https://www.swapi.tech/api';
     const [planetas, setPlanetas] = useState([]);
 

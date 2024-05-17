@@ -1,10 +1,14 @@
-import React from "react";
+import React, {useContext} from "react";
 import { Link } from "react-router-dom";
 import descarga from "../../img/descarga.png";
+import {store} from "../store/flux.js"
+import { Context } from "../store/appContext.js";
+
 
 export const Navbar = () => {
 
 	const host = "https://cuddly-fishstick-977x6g7xjvqj37wr9-3000.app.github.dev/";
+	const { store, actions } = useContext(Context);
 
 	return (
 		<nav className="navbar navbar-dark bg-dark px-4">
@@ -13,16 +17,21 @@ export const Navbar = () => {
 			</Link>
 
 			<div className="dropdown">
-				<button className="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-					Dropdown button
+				<button type="button" className="btn btn-success position-relative">
+					favoritos
+					<span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+					{store.counter}
+				</span>
 				</button>
-				<ul className="dropdown-menu dropdown-menu-dark">
-					<li><Link to="/personajes" className="dropdown-item " >Personajes</Link></li>
-					<li><Link to="/planetas" className="dropdown-item " >Planetas</Link></li>
-					<li><Link to="/single/:theid" className="dropdown-item " >Single</Link></li>
-					<li><hr className="dropdown-divider"/></li>
-					<li><a className="dropdown-item" href="#">Separated link</a></li>
-				</ul>
+				<Link to="/personajes" type="button" className="btn btn-outline-warning m-1">Personajes
+				</Link>
+				<Link to="/planetas" type="button" className="btn btn-outline-warning m-1">Planetas</Link>
+				<Link to="/vehiculos" type="button" className="btn btn-outline-warning m-1">Vehículos</Link>
+
+				<button className="btn btn-secondary dropdown-toggle m-1" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+					FAVS
+				</button>
+
 			</div>
 		</nav>
 	);

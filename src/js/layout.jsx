@@ -3,14 +3,15 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ScrollToTop from "./component/scrollToTop";
 
 import { Home } from "./views/home.jsx";
-import { Demo } from "./views/demo";
 import injectContext from "./store/appContext";
 
 import { Navbar } from "./component/navbar";
-import { Personajes } from "./views/personajes.jsx";
-import { Planetas } from "./views/planetas.jsx";
+import { Planets } from "./views/planetas.jsx";
 import { Footer } from "./component/footer";
 import { People } from "./views/people.jsx";
+import { Vehiculos } from "./views/vehiculos.jsx";
+import { DetailPlanets } from "./views/planetaDetail.jsx"
+
 
 
 //create your first component
@@ -24,11 +25,14 @@ const Layout = () => {
 			<BrowserRouter basename={basename}>
 				<ScrollToTop>
 					<Navbar />
-					<Home/>
-					<People/> 
+					
 					<Routes>
-						<Route path="/personajes" element={<Personajes />} />
-						<Route path="/planetas" element={<Planetas />} />
+						<Route path="/" element={<Home/>} />
+						<Route path="/personajes" element={<People />} />
+						<Route path="/planetas" element={<Planets />} />
+						<Route path="/vehiculos" element={<Vehiculos/>}/>
+				
+						<Route path="/planetas/:item.uid" element={<DetailPlanets/>}/>
 					</Routes>
 					<Footer />
 				</ScrollToTop>

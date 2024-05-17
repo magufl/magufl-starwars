@@ -1,22 +1,16 @@
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-			demo: [
-				{
-					title: "FIRST",
-					background: "white",
-					initial: "white"
-				},
-				{
-					title: "SECOND",
-					background: "white",
-					initial: "white"
-				}
-			],
 			people : [],
+			planets: [],
+			vehiculos: [],
+			currentPlanetURL: null,
+			currentPlanet: null,
+			counter: 0,
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
+			incrementar: () => {setStore({counter: getStore().counter + 1})},
 			exampleFunction: () => {
 				getActions().changeColor(0, "green");
 			},
@@ -47,6 +41,29 @@ const getState = ({ getStore, getActions, setStore }) => {
 				const response = await fetch(uri, options);
 				const data = await response.json();
 				setStore ({people: data.results});
+			},
+			getPlanets: async () => {
+				const uri = 'https://www.swapi.tech/api/planets/';
+				const options = {
+					method: 'GET'
+				}
+				const response = await fetch(uri, options);
+				const data = await response.json();
+				setStore ({planets: data.results});
+			},
+			getVehiculos: async () => {
+				const uri = 'https://www.swapi.tech/api/vehicles/';
+				const options = {
+					method: 'GET'
+				}
+				const response = await fetch(uri, options);
+				const data = await response.json();
+				setStore ({vehiculos: data.results});
+			},
+			settingPlanetURL: (text) => {setStore({currentPlanetUrl: text})},
+			currentPlanet: async () => {
+				const uri = setStore().currentPlanetURL;
+				console.log(currentPlanetURL)
 			},
 		}
 	};

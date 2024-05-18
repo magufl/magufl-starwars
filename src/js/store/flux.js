@@ -3,10 +3,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 		store: {
 			people : [],
 			planets: [],
-			vehiculos: [],
-			currentPlanetURL: null,
 			currentPlanet: null,
+			currentPlanetUrl: "",
+			vehiculos: [],
+			fav: [],
 			counter: 0,
+		
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
@@ -51,6 +53,18 @@ const getState = ({ getStore, getActions, setStore }) => {
 				const data = await response.json();
 				setStore ({planets: data.results});
 			},
+			getCurrentPlanet: async () => {
+				const uri = getStore().currentPlanetUrl;
+				const response = await fetch(uri);
+				if (!response.ok) {
+					console.log("Error");
+					return;
+				}
+				const data = await response.json();
+				console.log(data);
+				setStore({ currentPlanet: data.result });
+			},
+			settingPlanetUrl: (text) => { setStore({ currentPlanetUrl: text }); },
 			getVehiculos: async () => {
 				const uri = 'https://www.swapi.tech/api/vehicles/';
 				const options = {
@@ -60,11 +74,21 @@ const getState = ({ getStore, getActions, setStore }) => {
 				const data = await response.json();
 				setStore ({vehiculos: data.results});
 			},
-			settingPlanetURL: (text) => {setStore({currentPlanetUrl: text})},
-			currentPlanet: async () => {
-				const uri = setStore().currentPlanetURL;
-				console.log(currentPlanetURL)
+			//funcion para filtrar y mostrar favoritos en el array
+			favoritos: (nombreFav) => {
+				const store = getStore();
+				if (store.fav.includes(nombreFav)) {
+					setStore({ fav: store.fav.filter((repetido)=>repetido != nombreFav)})
+				} else {
+					setStore({ fav: [...store.fav, nombreFav ] })
+				}
 			},
+			corazonColor: (name) => {
+				const store = getStore();
+				return store.fav.includes(name);
+			},
+
+			//funcion para comprobar si el array ya tiene ese elemento. si lo tiene, lo tiene que eliminar
 		}
 	};
 };

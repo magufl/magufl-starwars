@@ -6,7 +6,7 @@ export const People = () => {
     console.log(store.people)
     return (
         <>
-            <div className="row ps-3 bg-dark d-flex justify-content-center">
+            <div className="row ps-3 d-flex justify-content-center">
                 {store.people.map((item, id) =>
                     <div key={id} className="card d-flex justify-content-center m-2" style={{ width: '18rem' }}>
                         <div className="card-body">

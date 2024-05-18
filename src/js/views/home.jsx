@@ -8,7 +8,7 @@ import home from "../../img/home.jpg";
 export const Home = () => {
     
     return (
-        <div className="bg-dark px-4 text-center">
+        <div className=" px-4 text-center">
             <Link to="/">
 				<img src={home} height='500px'/>
 			</Link>

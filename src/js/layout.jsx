@@ -32,7 +32,7 @@ const Layout = () => {
 						<Route path="/planetas" element={<Planets />} />
 						<Route path="/vehiculos" element={<Vehiculos/>}/>
 				
-						<Route path="/planetas/:item.uid" element={<DetailPlanets/>}/>
+						<Route path="/planetas/:planetaId" element={<DetailPlanets/>}/>
 					</Routes>
 					<Footer />
 				</ScrollToTop>

@@ -2,10 +2,20 @@ const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
 			people : [],
+
+			currentPeople: null,
+			currentPeopleUrl: "",
+
 			planets: [],
+
 			currentPlanet: null,
 			currentPlanetUrl: "",
+
 			vehiculos: [],
+
+			currentVehicle: null,
+			currentVehicleUrl: "",
+
 			fav: [],
 			counter: 0,
 		
@@ -13,6 +23,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 		actions: {
 			// Use getActions to call a function within a fuction
 			incrementar: () => {setStore({counter: getStore().counter + 1})},
+
+
 			exampleFunction: () => {
 				getActions().changeColor(0, "green");
 			},
@@ -35,6 +47,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 				//reset the global store
 				setStore({ demo: demo });
 			},
+
+			//PEOPLE
 			getPeople: async () => {
 				const uri = 'https://www.swapi.tech/api/people/';
 				const options = {
@@ -44,6 +58,20 @@ const getState = ({ getStore, getActions, setStore }) => {
 				const data = await response.json();
 				setStore ({people: data.results});
 			},
+			getCurrentPeople: async () => {
+				const uri = getStore().currentPeopleUrl;
+				const response = await fetch(uri);
+				if (!response.ok) {
+					console.log("Error");
+					return;
+				}
+				const data = await response.json();
+				console.log(data);
+				setStore({ currentPeople: data.result });
+			},
+			settingPeopleUrl: (text) => { setStore({ currentPeopleUrl: text }); },
+
+			//PLANETS
 			getPlanets: async () => {
 				const uri = 'https://www.swapi.tech/api/planets/';
 				const options = {
@@ -65,6 +93,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 				setStore({ currentPlanet: data.result });
 			},
 			settingPlanetUrl: (text) => { setStore({ currentPlanetUrl: text }); },
+
+
+			//VEHICLES
 			getVehiculos: async () => {
 				const uri = 'https://www.swapi.tech/api/vehicles/';
 				const options = {
@@ -74,6 +105,21 @@ const getState = ({ getStore, getActions, setStore }) => {
 				const data = await response.json();
 				setStore ({vehiculos: data.results});
 			},
+			getCurrentVehicle: async () => {
+				const uri = getStore().currentVehicleUrl;
+				const response = await fetch(uri);
+				if (!response.ok) {
+					console.log("Error");
+					return;
+				}
+				const data = await response.json();
+				console.log(data);
+				setStore({ currentVehicle: data.result });
+			},
+			settingVehicleUrl: (text) => { setStore({ currentVehicleUrl: text }); },
+
+
+
 			//funcion para filtrar y mostrar favoritos en el array
 			favoritos: (nombreFav) => {
 				const store = getStore();

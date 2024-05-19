@@ -16,7 +16,7 @@ export const DetailPlanets = () => {
             ?
             <p className="text-danger">no hay data</p>
             :
-            <div className="card mb-3 mx-auto" style={{ width: '25rem' }}>
+            <div className="card mb-3 mx-auto" style={{ width: '30rem' }}>
                 <div className="row g-0 ">
                     <div className="d-flex">
                         <img
@@ -39,7 +39,7 @@ export const DetailPlanets = () => {
                         </div>
                     </div>
 
-                    <table class="table table-striped">
+                    <table className="table table-striped">
                         <tbody>
                             <tr>
                                 <th scope="row">Orbital period</th>

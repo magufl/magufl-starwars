@@ -6,11 +6,13 @@ import { Home } from "./views/home.jsx";
 import injectContext from "./store/appContext";
 
 import { Navbar } from "./component/navbar";
-import { Planets } from "./views/planetas.jsx";
+import { Planets } from "./views/planet.jsx";
 import { Footer } from "./component/footer";
 import { People } from "./views/people.jsx";
-import { Vehiculos } from "./views/vehiculos.jsx";
-import { DetailPlanets } from "./views/planetaDetail.jsx"
+import { Vehiculos } from "./views/vehicle.jsx";
+import { DetailPlanets } from "./views/planetDetail.jsx"
+import { DetailPeople } from "./views/peopleDetail.jsx"
+import { DetailVehicle} from "./views/vehicleDetail.jsx"
 
 
 
@@ -28,11 +30,13 @@ const Layout = () => {
 					
 					<Routes>
 						<Route path="/" element={<Home/>} />
-						<Route path="/personajes" element={<People />} />
-						<Route path="/planetas" element={<Planets />} />
-						<Route path="/vehiculos" element={<Vehiculos/>}/>
+						<Route path="/people" element={<People />} />
+						<Route path="/planets" element={<Planets />} />
+						<Route path="/vehicles" element={<Vehiculos/>}/>
 				
-						<Route path="/planetas/:planetaId" element={<DetailPlanets/>}/>
+						<Route path="/planets/:planetaId" element={<DetailPlanets/>}/>
+						<Route path="/people/:personajeId" element={<DetailPeople/>}/>
+						<Route path="/vehicles/:vehicleId" element={<DetailVehicle/>}/>
 					</Routes>
 					<Footer />
 				</ScrollToTop>

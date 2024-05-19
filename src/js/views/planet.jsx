@@ -22,7 +22,7 @@ export const Planets = () => {
                                 <img src={`https://starwars-visualguide.com/assets/img/planets/${item.uid}.jpg`} onError={imgError} className="card-img-top"></img>
                                 <h5 className="card-title text-white">{item.name}</h5>
                                 <p className="card-text text-white">ID: {item.uid}</p>
-                                <Link to={"/planetas/" + id} className="btn btn-secondary"
+                                <Link to={"/planets/" + id} className="btn btn-secondary"
                                      onClick={() => handlePlanet(item.url)}
                                 >
                                     More info

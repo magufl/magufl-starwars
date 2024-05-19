@@ -16,17 +16,18 @@ export const Navbar = () => {
 				<img src={descarga} height='80px' />
 			</Link>
 
-			<div >
+			<div className="d-flex flex-row-reverse">
 			
-				<Link to="/personajes" type="button" className="btn btn-outline-warning m-1">Personajes
+				<Link to="/people" type="button" className="btn btn-outline-warning m-1">Characters
 				</Link>
-				<Link to="/planetas" type="button" className="btn btn-outline-warning m-1">Planetas</Link>
-				<Link to="/vehiculos" type="button" className="btn btn-outline-warning m-1">Vehículos</Link>
+				<Link to="/planets" type="button" className="btn btn-outline-warning m-1">Planets</Link>
+				<Link to="/vehicles" type="button" className="btn btn-outline-warning m-1">Vehicles</Link>
 
-				<div>
+				<div class="dropdown">
 					<button className="btn btn-secondary dropdown-toggle m-1" type="button" data-bs-toggle="dropdown" aria-expanded="false">
 						FAVS {store.fav.length}
 					</button>
+				
 					<ul className="dropdown-menu">
 						{store.fav.map((item, id) => (
 							<li key={id}>

@@ -13,7 +13,8 @@ import { Vehiculos } from "./views/vehicle.jsx";
 import { DetailPlanets } from "./views/planetDetail.jsx"
 import { DetailPeople } from "./views/peopleDetail.jsx"
 import { DetailVehicle} from "./views/vehicleDetail.jsx"
-
+import { Contacts } from "./views/contacts.jsx"
+import { Formulario } from "./views/addContact.jsx"
 
 
 //create your first component
@@ -37,6 +38,9 @@ const Layout = () => {
 						<Route path="/planets/:planetaId" element={<DetailPlanets/>}/>
 						<Route path="/people/:personajeId" element={<DetailPeople/>}/>
 						<Route path="/vehicles/:vehicleId" element={<DetailVehicle/>}/>
+
+						<Route path="/contacts" element={<Contacts/>}/>
+						<Route path="/add-contact" element={<Formulario/>}/>
 					</Routes>
 					<Footer />
 				</ScrollToTop>

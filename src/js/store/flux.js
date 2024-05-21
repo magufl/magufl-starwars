@@ -1,7 +1,7 @@
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-			people : [],
+			people: [],
 
 			currentPeople: null,
 			currentPeopleUrl: "",
@@ -18,11 +18,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			fav: [],
 			counter: 0,
-		
+
+			contacts: null,
+
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
-			incrementar: () => {setStore({counter: getStore().counter + 1})},
+			incrementar: () => { setStore({ counter: getStore().counter + 1 }) },
 
 
 			exampleFunction: () => {
@@ -56,7 +58,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 				const response = await fetch(uri, options);
 				const data = await response.json();
-				setStore ({people: data.results});
+				setStore({ people: data.results });
 			},
 			getCurrentPeople: async () => {
 				const uri = getStore().currentPeopleUrl;
@@ -79,7 +81,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 				const response = await fetch(uri, options);
 				const data = await response.json();
-				setStore ({planets: data.results});
+				setStore({ planets: data.results });
 			},
 			getCurrentPlanet: async () => {
 				const uri = getStore().currentPlanetUrl;
@@ -103,7 +105,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 				const response = await fetch(uri, options);
 				const data = await response.json();
-				setStore ({vehiculos: data.results});
+				setStore({ vehiculos: data.results });
 			},
 			getCurrentVehicle: async () => {
 				const uri = getStore().currentVehicleUrl;
@@ -124,9 +126,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 			favoritos: (nombreFav) => {
 				const store = getStore();
 				if (store.fav.includes(nombreFav)) {
-					setStore({ fav: store.fav.filter((repetido)=>repetido != nombreFav)})
+					setStore({ fav: store.fav.filter((repetido) => repetido != nombreFav) })
 				} else {
-					setStore({ fav: [...store.fav, nombreFav ] })
+					setStore({ fav: [...store.fav, nombreFav] })
 				}
 			},
 			corazonColor: (name) => {
@@ -134,7 +136,39 @@ const getState = ({ getStore, getActions, setStore }) => {
 				return store.fav.includes(name);
 			},
 
-			//funcion para comprobar si el array ya tiene ese elemento. si lo tiene, lo tiene que eliminar
+
+			//TRAER AGENDA
+			getContacts: async () => {
+				const uri = 'https://playground.4geeks.com/contact/agendas/mar/contacts';
+				const options = {
+					method: 'GET'
+				}
+				const response = await fetch(uri, options)
+				if (!response.ok) {
+					console.log("Error");
+					return;
+				}
+				const data = await response.json();
+				setStore({ contacts: data.contacts });
+				console.log(data.contacts)
+			},
+			addContact: async (dataToSend) => {
+				const uri = 'https://playground.4geeks.com/contact/agendas/mar/contacts';
+				const options = {
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json'
+					},
+					body: JSON.stringify(dataToSend)
+				}
+				const response = await fetch(uri, options);
+				if (!response.ok) {
+					console.log("Error");
+					return;
+				}
+				getActions().getContacts();
+				
+			},
 		}
 	};
 };

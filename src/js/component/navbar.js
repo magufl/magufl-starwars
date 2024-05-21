@@ -22,8 +22,8 @@ export const Navbar = () => {
 				</Link>
 				<Link to="/planets" type="button" className="btn btn-outline-warning m-1">Planets</Link>
 				<Link to="/vehicles" type="button" className="btn btn-outline-warning m-1">Vehicles</Link>
-
-				<div class="dropdown">
+				<Link to="/contacts" type="button" className="btn btn-outline-warning m-1">Contacts</Link>
+				<div className="dropdown">
 					<button className="btn btn-secondary dropdown-toggle m-1" type="button" data-bs-toggle="dropdown" aria-expanded="false">
 						FAVS {store.fav.length}
 					</button>

@@ -15,6 +15,7 @@ import { DetailPeople } from "./views/peopleDetail.jsx"
 import { DetailVehicle} from "./views/vehicleDetail.jsx"
 import { Contacts } from "./views/contacts.jsx"
 import { Formulario } from "./views/addContact.jsx"
+import { ContactListEdit } from "./views/editContact.jsx"
 
 
 //create your first component
@@ -40,6 +41,7 @@ const Layout = () => {
 						<Route path="/vehicles/:vehicleId" element={<DetailVehicle/>}/>
 
 						<Route path="/contacts" element={<Contacts/>}/>
+						<Route path='/contact-list-Edit' element={<ContactListEdit/>}  />
 						<Route path="/add-contact" element={<Formulario/>}/>
 					</Routes>
 					<Footer />

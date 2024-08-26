@@ -20,7 +20,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			counter: 0,
 
 			contacts: null,
-
+			currentContactId: [{}],
+			currentContact: null,
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
@@ -166,9 +167,39 @@ const getState = ({ getStore, getActions, setStore }) => {
 					console.log("Error");
 					return;
 				}
-				getActions().getContacts();
-				
+				getActions().getContacts();	
 			},
+			settingCurrentContactId: (id) =>{setStore({currentContactId:id})},
+			settingCurrentContact: (item) =>{setStore({currentContact:item})},
+			editContact: async (dataToSend) => {
+				const uri = `https://playground.4geeks.com/contact/agendas/mar/contacts/${getStore().currentContactId}`;
+				const options = {
+					method: 'PUT',
+					headers: {
+						'Content-type': 'application/json'
+					},
+					body: JSON.stringify(dataToSend)
+				}
+				const response = await fetch( uri, options);
+				if (!response.ok){
+					console.log('Error', response.status, response.status.text);
+					return
+				}
+				getActions().getcontacts();
+			},
+			deleteContact: async ()=>{
+				const uri = `https://playground.4geeks.com/contact/agendas/mar/contacts/${getStore().currentContactId}`;
+				const options = {
+					method: 'DELETE'
+				  };
+				  const response = await fetch(uri, options);
+				  if (!response.ok) {
+					console.log('Error: ', response.status, response.statusText);
+					return
+				  };
+				  getActions().getcontacts();
+			}, 
+
 		}
 	};
 };
